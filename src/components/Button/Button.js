@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
-  background-color: ${({ color }) => color || '#ffd426'};
+  /* background-color: ${({ color }) => color || '#ffd426'}; */
+  background-color: #ffd426;
   border: none;
   width: 220px;
   height: 50px;
@@ -10,6 +11,7 @@ const Button = styled.button`
   font-family: 'Montserrat';
   text-transform: uppercase;
   font-weight: 600;
+  color: ${({ color }) => color || 'orange'};
 
   ${({ secondary }) =>
     secondary &&
