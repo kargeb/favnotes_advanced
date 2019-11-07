@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
-  background-color: ${({ tertiary }) => (tertiary ? 'blue' : 'orange')};
+  background-color: #ffd426;
   border: none;
   width: 220px;
-  height: ${({ height }) => height || '50px'};
+  height: 50px;
   border-radius: 40px;
   font-size: 16px;
   text-transform: uppercase;
@@ -13,7 +13,8 @@ const Button = styled.button`
   ${({ secondary }) =>
     secondary &&
     css`
-      background-color: grey;
+      background-color: #e2e2e2;
+      font-weight: 300;
       width: 105px;
       height: 30px;
       font-size: 10px;
