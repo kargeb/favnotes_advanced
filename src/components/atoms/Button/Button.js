@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
-  /* background-color: ${({ color }) => color || '#ffd426'}; */
-  background-color: #ffd426;
+  background-color: ${({ theme }) => theme.primary};
   border: none;
   width: 220px;
   height: 50px;
@@ -10,14 +9,14 @@ const Button = styled.button`
   font-size: 16px;
   font-family: 'Montserrat';
   text-transform: uppercase;
-  font-weight: 600;
-  color: ${({ color }) => color || 'orange'};
+  font-weight: ${({ theme }) => theme.bold};
+  color: ${({ color }) => color || 'black'};
 
   ${({ secondary }) =>
     secondary &&
     css`
       background-color: #e2e2e2;
-      font-weight: 300;
+      font-weight: ${({ theme }) => theme.light};
       width: 105px;
       height: 30px;
       font-size: 10px;
