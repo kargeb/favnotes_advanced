@@ -1,12 +1,13 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.button`
-  background-color: #ffd426;
+  background-color: ${({ color }) => color || '#ffd426'};
   border: none;
   width: 220px;
   height: 50px;
   border-radius: 40px;
   font-size: 16px;
+  font-family: 'Montserrat';
   text-transform: uppercase;
   font-weight: 600;
 
