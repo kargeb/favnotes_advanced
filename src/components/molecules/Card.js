@@ -1,4 +1,5 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Heading from 'components/atoms/Heading/Heading';
@@ -16,7 +17,7 @@ const StyledWrapper = styled.div`
 
 const InnerWrapper = styled.div`
   padding: 17px 30px;
-  background-color: ${({ yellow, theme }) => (yellow ? theme.primary : 'white')};
+  background-color: ${({ color, theme }) => (color ? theme[color] : 'white')};
 
   ${({ flex }) =>
     flex &&
@@ -39,7 +40,7 @@ const StyledHeading = styled(Heading)`
 
 const Card = () => (
   <StyledWrapper>
-    <InnerWrapper yellow>
+    <InnerWrapper color>
       <StyledHeading>Hello Roman</StyledHeading>
       <DateInfo>3 days</DateInfo>
     </InnerWrapper>

@@ -5,4 +5,6 @@ export default {
   title: 'Card',
 };
 
-export const card = () => <Card />;
+export const cardPrimary = () => <Card color="primary" />;
+export const cardSecondary = () => <Card color="secondary" />;
+export const cardTertiary = () => <Card color="tertiary" />;
