@@ -15,7 +15,7 @@ export default {
 const Background = styled.div`
   width: 150px;
   height: 150px;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.note};
   display: flex;
   justify-content: center;
   align-items: center;
