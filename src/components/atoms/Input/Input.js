@@ -1,30 +1,29 @@
 import styled, { css } from 'styled-components';
-import icon from 'assets/icons/magnifier.svg';
+import magnifierIcon from 'assets/icons/magnifier.svg';
 
 const Input = styled.input`
-  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.regular};
+  background-color: ${({ theme }) => theme.grey100};
   border: none;
-  width: 200px;
-  height: 40px;
-  padding-left: 10px;
-  background-color: ${({ theme }) => theme.grey200};
+  border-radius: 50px;
 
   ::placeholder {
-    color: ${({ theme }) => theme.grey300};
     text-transform: uppercase;
+    letter-spacing: 1px;
+    color: ${({ theme }) => theme.grey300};
   }
 
   ${({ search }) =>
     search &&
     css`
-      padding-left: 45px;
-      height: 30px;
-      background-color: ${({ theme }) => theme.grey200};
-      background-image: url(${icon});
+      padding: 10px 20px 10px 40px;
+      font-size: ${({ theme }) => theme.fontSize.xs};
+      background-image: url(${magnifierIcon});
+      background-size: 15px;
+      background-position: 15px 50%;
       background-repeat: no-repeat;
-      background-size: 20px;
-      background-position: 10px 50%;
-      backro
     `}
 `;
 

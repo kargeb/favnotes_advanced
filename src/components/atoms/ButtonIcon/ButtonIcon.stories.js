@@ -1,5 +1,4 @@
 import React from 'react';
-import { addDecorator } from '@storybook/react';
 import styled from 'styled-components';
 import bulbIcon from 'assets/icons/bulb.svg';
 import plusIcon from 'assets/icons/plus.svg';
@@ -10,6 +9,7 @@ import ButtonIcon from './ButtonIcon';
 
 export default {
   title: 'ButtonIcon',
+  decorators: [storyFn => <Background>{storyFn()}</Background>],
 };
 
 const Background = styled.div`
@@ -20,8 +20,6 @@ const Background = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-addDecorator(story => <Background>{story()}</Background>);
 
 export const bulb = () => <ButtonIcon icon={bulbIcon} />;
 export const bulbActive = () => <ButtonIcon active icon={bulbIcon} />;
