@@ -8,7 +8,7 @@ import logoutIcon from 'assets/icons/logout.svg';
 import ButtonIcon from './ButtonIcon';
 
 export default {
-  title: 'ButtonIcon',
+  title: 'Icons/ButtonIcon',
   decorators: [storyFn => <Background>{storyFn()}</Background>],
 };
 
