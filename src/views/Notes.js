@@ -1,14 +1,12 @@
 import React from 'react';
-import Button from 'components/atoms/Button/Button';
+import UserPageTemplate from 'templates/UserPageTemplate';
 
 const Notes = () => (
-  <div>
-    {' '}
-    <h1>Notes</h1>
-    <h1>Działam</h1>
-    <Button>Close / save</Button>
-    <Button secondary>secondary</Button>
-  </div>
+  <>
+    <UserPageTemplate pageType="note">
+      <h1>Notes</h1>
+    </UserPageTemplate>
+  </>
 );
 
 export default Notes;
