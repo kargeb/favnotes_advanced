@@ -12,6 +12,7 @@ import logoIcon from 'assets/icons/logo.svg';
 const Wrapper = styled.aside`
   position: fixed;
   left: 0;
+  top: 0;
   background-color: ${({ activeColor, theme }) => theme[activeColor]};
   height: 100vh;
   width: 100px;
