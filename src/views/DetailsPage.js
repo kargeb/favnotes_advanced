@@ -1,17 +1,17 @@
-/* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import DetailsTemplate from 'templates/DetailsTemplate';
 import { routes } from 'routes';
-import UserPageTemplate from '../templates/UserPageTemplate';
 
-class DetailsPage extends React.Component {
+class DetailsPage extends Component {
   state = {
     pageType: 'notes',
   };
 
   componentDidMount() {
-    switch (this.props.match.path) {
+    const { match } = this.props;
+
+    switch (match.path) {
       case routes.twitter:
         this.setState({ pageType: 'twitters' });
         break;
@@ -22,29 +22,38 @@ class DetailsPage extends React.Component {
         this.setState({ pageType: 'articles' });
         break;
       default:
+        console.log('Something went wrong with matching paths');
     }
   }
 
   render() {
-    const { match } = this.props;
+    const dummyArticle = {
+      id: 1,
+      title: 'Wake me up when Vue ends',
+      content:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
+      twitterName: 'reactjs',
+      articleUrl: 'https://youtube.com',
+      created: '1 day',
+    };
+
+    const { pageType } = this.state;
 
     return (
-      <UserPageTemplate pageType={this.state.pageType}>
-        <>
-          {/* {console.log(match)} */}
-          <h1>Jestem w details page</h1>
-          <p>jestem w twitters: {match.path === routes.twitter ? 'tak' : 'nie'}</p>
-          <Link to="/">Powrót</Link>
-        </>
-      </UserPageTemplate>
+      <DetailsTemplate
+        pageType={pageType}
+        title={dummyArticle.title}
+        created={dummyArticle.created}
+        content={dummyArticle.content}
+        articleUrl={dummyArticle.articleUrl}
+        twitterName={dummyArticle.twitterName}
+      />
     );
   }
 }
 
 DetailsPage.propTypes = {
-  match: PropTypes.shape({
-    path: PropTypes.string,
-  }).isRequired,
+  match: PropTypes.string.isRequired,
 };
 
 export default DetailsPage;

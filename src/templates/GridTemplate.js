@@ -40,9 +40,9 @@ const GridTemplate = ({ children, pageType }) => (
         <StyledPageHeader>
           <Input search placeholder="Search" />
           <StyledHeading big as="h1">
-            {pageType}s
+            {pageType}
           </StyledHeading>
-          <StyledParagraph>6 {pageType}s</StyledParagraph>
+          <StyledParagraph>{pageType}</StyledParagraph>
         </StyledPageHeader>
         <StyledGrid>{children}</StyledGrid>
       </StyledWrapper>
