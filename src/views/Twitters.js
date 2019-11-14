@@ -4,6 +4,7 @@ import GridTemplate from 'templates/GridTemplate';
 
 const twitters = [
   {
+    id: 1,
     title: 'Hello Roman',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -11,6 +12,7 @@ const twitters = [
     twitterName: 'hello_roman',
   },
   {
+    id: 2,
     title: 'Redux guy',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -18,6 +20,7 @@ const twitters = [
     twitterName: 'dan_abramov',
   },
   {
+    id: 3,
     title: 'React router stuff',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -25,6 +28,7 @@ const twitters = [
     twitterName: 'mjackson',
   },
   {
+    id: 4,
     title: 'Super animacje!',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -34,19 +38,18 @@ const twitters = [
 ];
 
 const Twitters = () => (
-  <GridTemplate pageType="twitter">
-    <>
-      {twitters.map(twitter => (
-        <Card
-          cardType="twitter"
-          title={twitter.title}
-          content={twitter.content}
-          twitterName={twitter.twitterName}
-          created={twitter.created}
-          key={twitter.title}
-        />
-      ))}
-    </>
+  <GridTemplate pageType="twitters">
+    {twitters.map(twitter => (
+      <Card
+        id={twitter.id}
+        cardType="twitters"
+        title={twitter.title}
+        content={twitter.content}
+        twitterName={twitter.twitterName}
+        created={twitter.created}
+        key={twitter.id}
+      />
+    ))}
   </GridTemplate>
 );
 

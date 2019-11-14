@@ -7,4 +7,4 @@ export default {
   decorators: [StoryRouter()],
 };
 
-export const sidebar = () => <Sidebar pageType="twitter" />;
+export const sidebar = () => <Sidebar pageType="twitters" />;
