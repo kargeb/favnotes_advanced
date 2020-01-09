@@ -122,20 +122,3 @@ Card.defaultProps = {
   twitterName: null,
 };
 export default Card;
-
-// const Card = ({ cardType, title, content, articleUrl, created, twitterName }) => (
-//   <StyledWrapper>
-//     <InnerWrapper activeColor={cardType}>
-//       <StyledHeading>{title}</StyledHeading>
-//       <DateInfo>{created}</DateInfo>
-//       {cardType === 'twitters' && (
-//         <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />
-//       )}
-//       {cardType === 'articles' && <StyledLinkButton href={articleUrl} target="_blank" />}
-//     </InnerWrapper>
-//     <InnerWrapper flex>
-//       <Paragraph>{content}</Paragraph>
-//       <Button secondary>REMOVE</Button>
-//     </InnerWrapper>
-//   </StyledWrapper>
-// );
