@@ -6,6 +6,8 @@ import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { removeItem as removeItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
   flex-basis: 30%;
@@ -82,7 +84,16 @@ class Card extends React.Component {
   };
 
   render() {
-    const { id, cardType, title, content, articleUrl, created, twitterName } = this.props;
+    const {
+      id,
+      cardType,
+      title,
+      content,
+      articleUrl,
+      created,
+      twitterName,
+      removeItem,
+    } = this.props;
     const { redirect } = this.state;
     if (redirect) {
       return <Redirect to={`${cardType}/${id}`} />;
@@ -100,7 +111,9 @@ class Card extends React.Component {
         </InnerWrapper>
         <InnerWrapper flex>
           <Paragraph>{content}</Paragraph>
-          <Button secondary>REMOVE</Button>
+          <Button onClick={() => removeItem(cardType, id)} secondary>
+            REMOVE
+          </Button>
         </InnerWrapper>
       </StyledWrapper>
     );
@@ -114,6 +127,7 @@ Card.propTypes = {
   twitterName: PropTypes.string,
   content: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  removeItem: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -121,4 +135,14 @@ Card.defaultProps = {
   articleUrl: null,
   twitterName: null,
 };
-export default Card;
+
+const mapDispatchToProps = dispatch => ({
+  removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Card);
+
+// export default Card;
