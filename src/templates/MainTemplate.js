@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/mainTheme';
 import GlobalStyle from 'theme/GlobalStyle';
+import PageContext from 'context';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class MainTemplate extends Component {
@@ -37,12 +38,14 @@ class MainTemplate extends Component {
 
   render() {
     const { children } = this.props;
+    const { pageType } = this.state;
 
     return (
       <div>
-        {/* {console.log(pageTypes)} */}
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <PageContext.Provider value={pageType}>
+          <GlobalStyle />
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </PageContext.Provider>
       </div>
     );
   }
