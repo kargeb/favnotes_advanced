@@ -9,7 +9,6 @@ const Twitters = ({ twitters }) => (
     {twitters.map(twitter => (
       <Card
         id={twitter.id}
-        cardType="twitters"
         title={twitter.title}
         content={twitter.content}
         twitterName={twitter.twitterName}

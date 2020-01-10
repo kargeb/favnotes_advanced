@@ -8,7 +8,6 @@ const Notes = ({ notes }) => (
   <GridTemplate pageType="notes">
     {notes.map(note => (
       <Card
-        cardType="notes"
         title={note.title}
         content={note.content}
         created={note.created}

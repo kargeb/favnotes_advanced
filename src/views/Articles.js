@@ -9,7 +9,6 @@ const Articles = ({ articles }) => {
     <GridTemplate pageType="articles">
       {articles.map(article => (
         <Card
-          cardType="articles"
           title={article.title}
           content={article.content}
           articleUrl={article.articleUrl}
