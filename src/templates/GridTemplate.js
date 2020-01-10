@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
@@ -45,27 +45,45 @@ const StyledButtonIcon = styled(ButtonIcon)`
   background-color: ${({ activeColor, theme }) => theme[activeColor]};
   border-radius: 50px;
   background-size: 30%;
-  /* margin-left: 300px; */
 `;
 
-const GridTemplate = ({ children, pageContext }) => (
-  <>
-    <UserPageTemplate>
-      <StyledWrapper>
-        <StyledPageHeader>
-          <Input search placeholder="Search" />
-          <StyledHeading big as="h1">
-            {pageContext}
-          </StyledHeading>
-          <StyledParagraph>{pageContext}</StyledParagraph>
-        </StyledPageHeader>
-        <StyledGrid>{children}</StyledGrid>
-        <NewItemBar />
-        <StyledButtonIcon icon={plusIcon} activeColor={pageContext} />
-      </StyledWrapper>
-    </UserPageTemplate>
-  </>
-);
+class GridTemplate extends Component {
+  state = {
+    isNewItemBarVisible: false,
+  };
+
+  handleNewItemButton = () => {
+    this.setState(prevState => ({
+      isNewItemBarVisible: !prevState.isNewItemBarVisible,
+    }));
+  };
+
+  render() {
+    const { children, pageContext } = this.props;
+    const { isNewItemBarVisible } = this.state;
+
+    return (
+      <UserPageTemplate>
+        <StyledWrapper>
+          <StyledPageHeader>
+            <Input search placeholder="Search" />
+            <StyledHeading big as="h1">
+              {pageContext}
+            </StyledHeading>
+            <StyledParagraph>{pageContext}</StyledParagraph>
+          </StyledPageHeader>
+          <StyledGrid>{children}</StyledGrid>
+          <NewItemBar isVisible={isNewItemBarVisible} />
+          <StyledButtonIcon
+            icon={plusIcon}
+            activeColor={pageContext}
+            onClick={this.handleNewItemButton}
+          />
+        </StyledWrapper>
+      </UserPageTemplate>
+    );
+  }
+}
 
 GridTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -77,3 +95,22 @@ GridTemplate.defaultProps = {
 };
 
 export default withContext(GridTemplate);
+
+// const GridTemplate = ({ children, pageContext }) => (
+//   <>
+//     <UserPageTemplate>
+//       <StyledWrapper>
+//         <StyledPageHeader>
+//           <Input search placeholder="Search" />
+//           <StyledHeading big as="h1">
+//             {pageContext}
+//           </StyledHeading>
+//           <StyledParagraph>{pageContext}</StyledParagraph>
+//         </StyledPageHeader>
+//         <StyledGrid>{children}</StyledGrid>
+//         <NewItemBar />
+//         <StyledButtonIcon icon={plusIcon} activeColor={pageContext} />
+//       </StyledWrapper>
+//     </UserPageTemplate>
+//   </>
+// );
