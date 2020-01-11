@@ -16,7 +16,7 @@ const StyledWrapper = styled.div`
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 85px;
 `;
 
@@ -73,7 +73,7 @@ class GridTemplate extends Component {
             <StyledParagraph>{pageContext}</StyledParagraph>
           </StyledPageHeader>
           <StyledGrid>{children}</StyledGrid>
-          <NewItemBar isVisible={isNewItemBarVisible} />
+          <NewItemBar isVisible={isNewItemBarVisible} handleClose={this.handleNewItemButton} />
           <StyledButtonIcon
             icon={plusIcon}
             activeColor={pageContext}
