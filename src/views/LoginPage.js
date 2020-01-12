@@ -9,6 +9,8 @@ import Button from 'components/atoms/Button/Button';
 import Input from 'components/atoms/Input/Input';
 import { connect } from 'react-redux';
 import { authenticate as authenticateAction } from 'actions';
+import { Redirect } from 'react-router-dom';
+import { routes } from 'routes';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -70,7 +72,7 @@ const StyledButton = styled(Button)`
 
 // `;
 
-const LoginPage = ({ authenticate }) => (
+const LoginPage = ({ userID, authenticate }) => (
   <StyledWrapper>
     <StyledContainer>
       <StyledLogo />
@@ -80,24 +82,21 @@ const LoginPage = ({ authenticate }) => (
         onSubmit={({ username, password }) => {
           authenticate(username, password);
         }}
-        // onSubmit={({ username, password }) => {
-        //   axios
-        //     .post('http://localhost:9000/api/user/login', {
-        //       username,
-        //       password,
-        //     })
-        //     .then(() => console.log('login successul'))
-        //     .catch(err => console.log(err));
-        // }}
       >
-        {() => (
-          <StyledForm>
-            <Heading>User</Heading>
-            <Input as={Field} name="username" type="text" placeholder="User" />
-            <Input as={Field} name="password" type="password" placeholder="Password" />
-            <StyledButton type="submit">Sign In</StyledButton>
-          </StyledForm>
-        )}
+        {() => {
+          if (userID) {
+            return <Redirect to={routes.home} />;
+          }
+          return (
+            <StyledForm>
+              <Heading>{userID}</Heading>
+              <Heading>User</Heading>
+              <Input as={Field} name="username" type="text" placeholder="User" />
+              <Input as={Field} name="password" type="password" placeholder="Password" />
+              <StyledButton type="submit">Sign In</StyledButton>
+            </StyledForm>
+          );
+        }}
       </Formik>
     </StyledContainer>
   </StyledWrapper>
@@ -105,13 +104,18 @@ const LoginPage = ({ authenticate }) => (
 
 LoginPage.propTypes = {
   authenticate: PropTypes.func.isRequired,
+  userID: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = ({ userID = null }) => ({
+  userID,
+});
 
 const mapDispatchToProps = dispatch => ({
   authenticate: (username, password) => dispatch(authenticateAction(username, password)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(LoginPage);
