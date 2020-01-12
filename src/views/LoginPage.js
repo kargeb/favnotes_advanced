@@ -1,11 +1,14 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import axios from 'axios';
+// import axios from 'axios';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import logoIcon from 'assets/icons/logo.svg';
 import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import Input from 'components/atoms/Input/Input';
+import { connect } from 'react-redux';
+import { authenticate as authenticateAction } from 'actions';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -46,6 +49,7 @@ const StyledLogo = styled.div`
 const StyledForm = styled(Form)`
   padding: 15px 20px;
   height: 40vh;
+  min-height: 250px;
   text-align: center;
   background-color: white;
   width: 80%;
@@ -66,7 +70,7 @@ const StyledButton = styled(Button)`
 
 // `;
 
-const LoginPage = () => (
+const LoginPage = ({ authenticate }) => (
   <StyledWrapper>
     <StyledContainer>
       <StyledLogo />
@@ -74,14 +78,17 @@ const LoginPage = () => (
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={({ username, password }) => {
-          axios
-            .post('http://localhost:9000/api/user/login', {
-              username,
-              password,
-            })
-            .then(() => console.log('login successul'))
-            .catch(err => console.log(err));
+          authenticate(username, password);
         }}
+        // onSubmit={({ username, password }) => {
+        //   axios
+        //     .post('http://localhost:9000/api/user/login', {
+        //       username,
+        //       password,
+        //     })
+        //     .then(() => console.log('login successul'))
+        //     .catch(err => console.log(err));
+        // }}
       >
         {() => (
           <StyledForm>
@@ -96,4 +103,15 @@ const LoginPage = () => (
   </StyledWrapper>
 );
 
-export default LoginPage;
+LoginPage.propTypes = {
+  authenticate: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => ({
+  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoginPage);
