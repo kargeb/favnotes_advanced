@@ -8,6 +8,7 @@ import Notes from './Notes';
 import Twitters from './Twitters';
 import Articles from './Articles';
 import DetailsPage from './DetailsPage';
+import LoginPage from './LoginPage';
 
 function Root() {
   return (
@@ -16,6 +17,7 @@ function Root() {
         <MainTemplate>
           <>
             <Route exact path={routes.home} render={() => <Redirect to={routes.notes} />} />
+            <Route exact path={routes.login} component={LoginPage} />
             <Route exact path={routes.notes} component={Notes} />
             <Route path={routes.note} component={DetailsPage} />
             <Route exact path={routes.twitters} component={Twitters} />
