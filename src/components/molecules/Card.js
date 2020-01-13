@@ -39,11 +39,11 @@ const InnerWrapper = styled.div`
     `}
 `;
 
-const DateInfo = styled(Paragraph)`
-  margin: 0 0 5px;
-  font-weight: ${({ theme }) => theme.bold};
-  font-size: ${({ theme }) => theme.fontSize.xs};
-`;
+// const DateInfo = styled(Paragraph)`
+//   margin: 0 0 5px;
+//   font-weight: ${({ theme }) => theme.bold};
+//   font-size: ${({ theme }) => theme.fontSize.xs};
+// `;
 
 const StyledHeading = styled(Heading)`
   margin: 5px 0 0;
@@ -90,7 +90,7 @@ class Card extends React.Component {
       title,
       content,
       articleUrl,
-      created,
+      // created,
       twitterName,
       removeItem,
       pageContext,
@@ -104,7 +104,7 @@ class Card extends React.Component {
       <StyledWrapper onClick={this.handleClick}>
         <InnerWrapper activeColor={pageContext}>
           <StyledHeading>{title}</StyledHeading>
-          <DateInfo>{created}</DateInfo>
+          {/* <DateInfo>{created}</DateInfo> */}
           {pageContext === 'twitters' && (
             <StyledAvatar src={`https://avatars.io/twitter/${twitterName}`} />
           )}
@@ -124,10 +124,10 @@ Card.propTypes = {
   pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
   articleUrl: PropTypes.string,
-  created: PropTypes.string.isRequired,
+  // created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
   content: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   removeItem: PropTypes.func.isRequired,
 };
 

@@ -7,7 +7,6 @@ import { theme } from 'theme/mainTheme';
 import GlobalStyle from 'theme/GlobalStyle';
 import PageContext from 'context';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class MainTemplate extends Component {
   state = {
     pageType: 'notes',
