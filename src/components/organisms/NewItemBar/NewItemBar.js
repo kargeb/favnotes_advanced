@@ -39,21 +39,6 @@ const StyledInput = styled(Input)`
 const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
   <StyledWrapper activeColor={pageContext} isVisible={isVisible}>
     <Heading>Create new {pageContext}:</Heading>
-    {/* <StyledInput placeholder="Title" />
-    {pageContext === 'twitters' && <StyledInput placeholder="Account name eg. Reactjs" />}
-    {pageContext === 'articles' && <StyledInput placeholder="link" />}
-    <StyledTextArea as="textarea" placeholder="text" />
-    <Button
-      activeColor={pageContext}
-      onClick={() =>
-        addItem(pageContext, {
-          title: 'Dupa',
-          content: 'Piessss coś coś coś coś',
-        })
-      }
-    >
-      ADD
-    </Button> */}
 
     <Formik
       initialValues={{ title: '', created: '', content: '', articleUrl: '', twitterName: '' }}
@@ -69,14 +54,10 @@ const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => (
       // }}
 
       onSubmit={(values, { resetForm }) => {
-        // setTimeout(() => {
+        // console.log(`jestem a page context - ${pageContext} `);
         addItem(pageContext, values);
         resetForm();
         handleClose();
-        //   console.log(values);
-        //   alert(JSON.stringify(values, null, 2));
-        //   setSubmitting(false);
-        // }, 400);
       }}
     >
       {({

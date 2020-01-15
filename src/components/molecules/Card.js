@@ -101,8 +101,8 @@ class Card extends React.Component {
     }
 
     return (
-      <StyledWrapper onClick={this.handleClick}>
-        <InnerWrapper activeColor={pageContext}>
+      <StyledWrapper>
+        <InnerWrapper activeColor={pageContext} onClick={this.handleClick}>
           <StyledHeading>{title}</StyledHeading>
           {/* <DateInfo>{created}</DateInfo> */}
           {pageContext === 'twitters' && (

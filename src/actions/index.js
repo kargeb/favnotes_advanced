@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 export const REMOVE_ITEM = 'REMOVE_ITEM';
-export const ADD_ITEM = 'ADD_ITEM';
+
+export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
+export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
+export const ADD_ITEM_FAILURE = 'ADD_ITEM_FAILURE';
+
 export const AUTHENTICATE_REQUEST = 'AUTHENTICATE_REQUEST';
 export const AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS';
 export const AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE';
@@ -10,32 +14,53 @@ export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
 
-export const removeItem = (itemType, id) => {
-  return {
-    type: REMOVE_ITEM,
-    payload: {
-      itemType,
-      id,
-    },
-  };
+export const REMOVE_ITEM_REQUEST = 'REMOVE_ITEM_REQUEST';
+export const REMOVE_ITEM_SUCCESS = 'REMOVE_ITEM_SUCCESS';
+export const REMOVE_ITEM_FAILURE = 'REMOVE_ITEM_FAILURE';
+
+export const removeItem = (itemType, id) => dispatch => {
+  dispatch({ type: REMOVE_ITEM_REQUEST });
+
+  axios
+    .delete(`http://localhost:9000/api/note/${id}`)
+    .then(() => {
+      dispatch({
+        type: REMOVE_ITEM_SUCCESS,
+        payload: {
+          itemType,
+          id,
+        },
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: REMOVE_ITEM_FAILURE });
+    });
 };
 
-export const addItem = (itemType, itemContent) => {
-  const getID = () =>
-    `_${Math.random()
-      .toString(36)
-      .substr(2, 9)}`;
+export const addItem = (itemType, itemContent) => (dispatch, getState) => {
+  dispatch({ type: ADD_ITEM_REQUEST });
 
-  return {
-    type: ADD_ITEM,
-    payload: {
-      itemType,
-      item: {
-        id: getID(),
-        ...itemContent,
-      },
-    },
-  };
+  axios
+    .post('http://localhost:9000/api/note', {
+      userID: getState().userID,
+      type: itemType,
+      ...itemContent,
+    })
+    .then(({ data }) => {
+      // console.log(response);
+      dispatch({
+        type: ADD_ITEM_SUCCESS,
+        payload: {
+          itemType,
+          data,
+        },
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: ADD_ITEM_FAILURE });
+    });
 };
 
 export const fetchItems = itemType => (dispatch, getState) => {
@@ -88,20 +113,3 @@ export const authenticate = (username, password) => dispatch => {
       });
     });
 };
-
-// id: 1,
-// title: 'Wake me up when Vue ends',
-// content:
-//   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora
-// twitterName: 'reactjs',
-// articleUrl: 'https://youtube.com',
-// created: '1 day',
-
-// return {
-//   type: 'ADD_ITEM',
-//   payload: {
-//     itemType,
-//     id: getID(),
-//     itemContent,
-//   },
-// };
